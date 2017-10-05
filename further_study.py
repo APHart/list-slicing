@@ -30,8 +30,12 @@ def custom_len(input_list):
         8
 
     """
+    count = 0
 
-    return 0
+    for item in input_list:
+        count += 1
+
+    return count
 
 
 # For the next four exercises, you'll need to be clever and think about ways
@@ -59,7 +63,7 @@ def custom_append(input_list, value):
 
     """
 
-    pass
+    input_list[-1:] = [input_list[-1], value]
 
 
 def custom_extend(input_list, second_list):
@@ -78,7 +82,8 @@ def custom_extend(input_list, second_list):
 
     """
 
-    pass
+    second_list[0:1] = [input_list[-1], second_list[0]]
+    input_list[-1:] = second_list
 
 
 def custom_insert(input_list, index, value):
@@ -95,8 +100,8 @@ def custom_insert(input_list, index, value):
         True
 
     """
-
-    pass
+    stop_index = index + 1
+    input_list[index:stop_index] = [value, input_list[index]]
 
 
 def custom_remove(input_list, value):
@@ -114,8 +119,15 @@ def custom_remove(input_list, value):
         True
 
     """
+    count = -1
 
-    pass
+    for item in input_list:
+
+        count += 1
+        if item == value:
+            break
+
+    del input_list[count]
 
 
 def custom_pop(input_list):
@@ -133,8 +145,9 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    last_item = input_list[-1]
+    del input_list[-1]
+    return last_item
 
 
 def custom_index(input_list, value):
@@ -150,7 +163,15 @@ def custom_index(input_list, value):
 
     """
 
-    return 0
+    count = -1
+
+    for item in input_list:
+
+        count += 1
+        if item == value:
+            break
+
+    return count
 
 
 def custom_count(input_list, value):
@@ -165,8 +186,14 @@ def custom_count(input_list, value):
         2
 
     """
+    count = 0
 
-    return 0
+    for item in input_list:
+
+        if item == value:
+            count += 1
+
+    return count
 
 
 def custom_reverse(input_list):
@@ -185,7 +212,7 @@ def custom_reverse(input_list):
 
     """
 
-    pass
+    input_list[0:] = input_list[-1::-1]
 
 
 def custom_contains(input_list, value):
@@ -200,12 +227,16 @@ def custom_contains(input_list, value):
         >>> custom_contains([0, 3, 6, 9, 12, 15, 18, 21, 24], 23)
         False
 
-        >>> custom_contains([0, 3, 6, 9, 12, 15, 18, 21, 24], 24)
+        >>> custom_contains([0, 3, 6, 9, 12, 15, 18, 21, 24, 5], 24)
         True
 
     """
+    for item in input_list:
 
-    return None
+        if item == value:
+            return True
+ 
+    return False
 
 
 def custom_equality(some_list, another_list):
@@ -224,7 +255,17 @@ def custom_equality(some_list, another_list):
 
     """
 
-    return None
+    index = 0
+
+    for item in some_list:
+
+        if item == another_list[index]:
+            index += 1
+
+        else:
+            return False
+
+    return True
 
 
 ##############################################################################
